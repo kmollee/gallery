@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Search' %}{% endblock %}
+{% block header %}{% trans 'Search' %}{% endblock %}
+
+{% block width %}small{% endblock %}
+
+{% block content %}
+    <form method="post" action="{{ request.path }}" class="search">
+        {% include '_form.html' %}
+        <div class="buttons">
+            <input type="submit" value="{% trans 'Search' %}">
+        </div>
+    </form>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+        $(function() {
+            $("form select").chosen();
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,357 @@
+body {
+    background: #d2d2d2;
+}
+
+/** topbar styles ************************************************************/
+
+#topbar {
+    display: table;
+    width: 100%;
+
+    padding: 15px;
+    background: #000;
+    color: #d2d2d2;
+}
+
+#topbar h1 a {
+    color: #fff;
+    text-decoration: none
+}
+
+#topbar .title, #topbar .links {
+    display: table-cell;
+}
+
+#topbar .links {
+    text-align: right;
+    vertical-align: middle;
+}
+
+#topbar .links a {
+    color: #fff !important;
+    text-decoration: none;
+    border-right: 1px solid #666;
+    padding-left: 8px;
+    padding-right: 10px;
+}
+
+#topbar .links a:last-child {
+    border-right: 0px !important;
+    padding-right: 0px;
+}
+
+#topbar .links a:hover {
+    text-decoration: underline;
+}
+
+/** toolbar styles ************************************************************/
+
+#toolbar {
+    display: table;
+    width: 100%;
+
+    padding: 10px 15px;
+    background: #444;
+    color: #d2d2d2;
+}
+
+#toolbar .right {
+    text-align: right;
+    vertical-align: middle;
+}
+
+#toolbar .left {
+    text-align: left;
+    vertical-align: middle;
+}
+
+#toolbar .left,
+#toolbar .right {
+    width: 400px;
+}
+
+#toolbar .pagination {
+    text-align: center;
+    vertical-align: middle;
+}
+
+#toolbar .right,
+#toolbar .left,
+#toolbar .pagination {
+    display: table-cell;
+}
+
+#toolbar .left a {
+    color: #fff !important;
+    text-decoration: none;
+}
+
+#toolbar .right a {
+    color: #fff !important;
+    text-decoration: none;
+    padding-left: 8px;
+    padding-right: 10px;
+    border-right: 1px solid #666;
+}
+
+#toolbar .right a:last-child {
+    border-right: 0px !important;
+    padding-right: 0px;
+}
+
+#toolbar .left a:hover,
+#toolbar .right a:hover {
+    text-decoration: underline;
+}
+
+#toolbar img {
+    vertical-align: middle;
+    border: 1px solid red;
+}
+
+#toolbar .pagination img {
+    padding: 3px;
+}
+
+#toolbar .pagination .count {
+    padding: 0px 10px;
+}
+
+#toolbar .pagination a {
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    padding: 3px 6px;
+}
+
+#toolbar .pagination span.next,
+#toolbar .pagination span.previous {
+    background: #333;
+    color: #ccc;
+    text-decoration: none;
+    padding: 3px 6px;
+}
+
+/** body styles based on size ************************************************/
+
+#body-small #content {
+    border: 1px solid #FFF;
+    background: #FFF;
+    width: 350px;
+    margin: 10px auto;
+}
+
+#body-medium #content {
+    border: 1px solid #FFF;
+    background: #FFF;
+    width: 640px;
+    margin: 10px auto;
+}
+
+#body-large #content {
+    margin: 10px auto 20px auto;
+    width: 1100px;
+}
+
+#body-small #toolbar, #body-medium #toolbar {
+    display: none;
+}
+
+/** content styles ***********************************************************/
+
+#content p,
+#content h2 {
+    margin: 15px;
+}
+
+a {
+    color: #313E53;
+}
+
+/** album list and thumbnail styles ******************************************/
+
+.album-list a {
+    text-decoration: none;
+    color: #000;
+}
+
+.album-list .name {
+}
+
+.album-list .count {
+}
+
+.album-list .thumb, .photo-list .thumb {
+    /*margin-right: 15px;*/
+    /*margin-bottom: 15px;*/
+    margin: 10px;
+
+    width: 200px;
+    height: 200px;
+
+    float: left;
+}
+
+.thumb img {
+    box-shadow: 0px 0px 7px #444;
+}
+
+.album-list .thumb {
+    height: 250px;
+    text-align: center;
+}
+
+.photo-main {
+    text-align: center;
+}
+
+.photo-main .name {
+    margin-top: 5px;
+}
+
+.photo-main img {
+    box-shadow: 0px 0px 7px #444;
+}
+
+/** form styles **************************************************************/
+
+form .field, form .buttons {
+    margin: 15px;
+}
+
+form .field-with-errors label {
+    color: #cc0000;
+    font-weight: bold;
+}
+
+form .field-with-errors input,
+form .field-with-errors .chosen-container-single .chosen-single{
+    border-color: #cc0000 !important;
+}
+
+form .non-field-errors {
+    margin: 15px;
+}
+
+form .errors {
+    color: #cc0000;
+    font-weight: bold;
+}
+
+form .field label {
+    display: block;
+}
+
+form .field .helptext {
+    color: #606060;
+}
+
+#body-small form select,
+#body-small form input[type="text"],
+#body-small form input[type="password"],
+#body-small form input[type="email"] {
+    width: 100%;
+}
+
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form select {
+    background: #FFF;
+    border: 1px solid #666;
+    padding: 4px;
+}
+
+form input[readonly="True"] {
+    background: #f2f2f2;
+}
+
+form input[type="submit"] {
+    color: #FFF;
+    border: 0px;
+    padding: 8px 20px;
+    background: #313E53;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background: #324A6F;
+}
+
+form input[type="button"] {
+    color: #FFF;
+    border: 0px;
+    padding: 8px 20px;
+    background: #606060;
+    cursor: pointer;
+}
+
+form input[type="button"]:hover {
+    background: #707070;
+}
+
+form.search .helptext {
+    visibility: hidden;
+    display: none;
+}
+
+/** modal window styles ******************************************************/
+
+#modal-wrapper {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 99999;
+    opacity:0;
+}
+
+#modal-wrapper {
+    opacity:1;
+    pointer-events: auto;
+}
+
+#modal-wrapper > div {
+    width: 400px;
+    position: relative;
+    border: 1px solid #fff;
+    margin: 10% auto;
+    padding: 5px;
+    background: #fff;
+    text-align: center;
+}
+
+#modal p, #modal h2 {
+    margin: 15px;
+}
+
+#modal #id_name,
+#modal #id_people {
+    width: 300px;
+}
+
+/** messages styles ******************************************/
+
+#messages li {
+    width: 550px;
+    margin: 0px auto;
+    display: block;
+    text-align: center;
+    padding: 8px;
+}
+
+#messages .success {
+    background-color: #DFF2BF;
+}
+
+#messages .error {
+    background-color: #FFBABA;
+}
+
+#messages .warning {
+    background-color: #FFBABA;
+}

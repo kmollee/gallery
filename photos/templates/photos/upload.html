@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Upload' %}{% endblock %}
+{% block header %}{% trans 'Upload' %}{% endblock %}
+
+{% block width %}small{% endblock %}
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data" action="{{ request.path }}">
+        {% include '_form.html' %}
+        <div class="buttons">
+            <input type="submit" value="{% trans 'Upload' %}">
+        </div>
+    </form>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+        $(function() {
+            $("form select").chosen();
+        });
+    </script>
+{% endblock %}

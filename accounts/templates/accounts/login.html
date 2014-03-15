@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Login' %}{% endblock %}
+{% block header %}{% trans 'Login' %}{% endblock %}
+
+{% block width %}small{% endblock %}
+
+{% block content %}
+
+    <form method="post" action="{% url 'accounts:login' %}">
+        <div class="display:none"><input type="hidden" name="{{ redirect_field }}" value="{{ redirect_to }}"></div>
+        {% include '_form.html' %}
+        <div class="buttons">
+            <input type="submit" value="{% trans 'Login' %}">
+        </div>
+    </form>
+
+    <p><a href="{% url 'accounts:password_reset' %}">{% trans 'Forgot your password?' %}</a></p>
+
+{% endblock %}

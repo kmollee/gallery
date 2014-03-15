@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block title %}{{ person.name }}{% endblock %}
+{% block header %}{{ person.name }}{% endblock %}
+
+{% block actions %}
+    <div class="actions person-actions">
+        {% if perms.photos.change_person %}
+            <a href="{% url 'person_rename' person.pk %}" class="rename">{% trans 'Rename' %}</a>
+        {% endif %}
+        {% if perms.photos.delete_person %}
+            <a href="{% url 'person_delete' person.pk %}" class="delete">{% trans 'Delete' %}</a>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="photo-list">
+        {% for photo in photo_list %}
+            <div class="thumb">
+                <a href="{% url 'photo' pk=photo.pk person_pk=person.pk %}">
+                    <img src="{{ photo.file_200x200.url }}" alt="{{ photo.name }}">
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

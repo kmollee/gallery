@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block title %}{{ photo.album.name }}{% endblock %}
+{% block header %}{{ photo.album.name }}{% endblock %}
+
+{% block pagination %}
+
+    {% if paginator.has_previous %}
+        <a href="{{ paginator.previous_url }}" class="previous keydown-navigate-left">&lt&lt; Prev</a>
+    {% else %}
+        <span class="previous">&lt&lt; Prev</span>
+    {% endif %}
+
+    <span class="count">
+        {{ paginator.index }} {% trans 'of' %} {{ paginator.count }}
+    </span>
+
+    {% if paginator.has_next %}
+        <a href="{{ paginator.next_url }}" class="next keydown-navigate-right">Next &gt;&gt;</a>
+    {% else %}
+        <span class="next">Next &gt;&gt;</span>
+    {% endif %}
+
+{% endblock %}
+
+{% block actions %}
+    <div class="actions photo-actions">
+        {% if perms.photos.change_photo %}
+            <a href="{% url 'photo_rotate' photo.pk %}" class="rotate">{% trans 'Rotate' %}</a>
+            <a href="{% url 'photo_rename' photo.pk %}" class="rename">{% trans 'Rename' %}</a>
+            <a href="{% url 'photo_move' photo.pk %}" class="move">{% trans 'Move' %}</a>
+            <a href="{% url 'photo_tag' photo.pk %}" class="tag">{% trans 'Tag' %}</a>
+        {% endif %}
+        {% if perms.photos.delete_photo %}
+            <a href="{% url 'photo_delete' photo.pk %}" class="delete">{% trans 'Delete' %}</a>
+        {% endif %}
+        <a href="{% url 'photo_download' photo.pk %}">{% trans 'Download' %}</a>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="photo-main">
+        <div class="photo">
+            <img src="{{ photo.file_800x600.url }}" alt="{{ photo.name }}">
+        </div>
+        <div class="name">{{ photo.name }}</div>
+    </div>
+{% endblock %}

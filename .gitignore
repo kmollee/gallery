@@ -1,0 +1,10 @@
+__pycache__
+*.py[cod]
+.DS_Store
+.idea
+*.sublime-project
+public/media/
+public/static/
+gallery/settings_local.py
+tmp/cache
+database.sqlite3

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Results' %}{% endblock %}
+{% block header %}{% trans 'Results' %}{% endblock %}
+
+{% block content %}
+    <div class="photo-list">
+        {% for photo in photo_list %}
+            <div class="thumb">
+                <a href="{% url 'photo' pk=photo.pk query=query %}">
+                    <img src="{{ photo.file_200x200.url }}" alt="{{ photo.name }}">
+                </a>
+            </div>
+        {% endfor %}
+        <div class="clear"></div>
+    </div>
+{% endblock %}

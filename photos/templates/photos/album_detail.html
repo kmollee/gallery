@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block title %}{{ album.name }}{% endblock %}
+{% block header %}{{ album.name }}{% endblock %}
+
+{% block actions %}
+    <div class="actions album-actions">
+        {% if perms.photos.change_album %}
+            <a href="{% url 'album_edit' album.pk %}" class="rename">{% trans 'Edit' %}</a>
+            <a href="{% url 'album_merge' album.pk %}" class="merge">{% trans 'Merge' %}</a>
+        {% endif %}
+        {% if perms.photos.delete_album %}
+            <a href="{% url 'album_delete' album.pk %}" class="delete">{% trans 'Delete' %}</a>
+        {% endif %}
+        <a href="{% url 'album_download' album.pk %}">{% trans 'Download' %}</a>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="photo-list">
+        {% for photo in photo_list %}
+            <div class="thumb">
+                {% if location_pk %}
+                    {% url 'photo' pk=photo.pk album_pk=album.pk location_pk=location_pk as photo_url %}
+                {% else %}
+                    {% url 'photo' pk=photo.pk as photo_url %}
+                {% endif %}
+                <a href="{{ photo_url }}">
+                    <img src="{{ photo.file_200x200.url }}" alt="{{ photo.name }}">
+                </a>
+            </div>
+        {% endfor %}
+        <div class="clear"></div>
+    </div>
+{% endblock %}

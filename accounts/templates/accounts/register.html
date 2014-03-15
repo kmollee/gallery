@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Register' %}{% endblock %}
+{% block header %}{% trans 'Register' %}{% endblock %}
+
+{% block width %}medium{% endblock %}
+
+{% block content %}
+
+    <form method="post" action="{% url 'accounts:register' %}">
+        {% include '_form.html' %}
+        <div class="buttons">
+            <input type="submit" value="{% trans 'Create Account' %}">
+        </div>
+    </form>
+
+    <p>
+        {% trans 'Already have an account?' %}
+        <a href="{% url 'accounts:login' %}">{% trans 'Log in here.' %}</a>
+    </p>
+
+{% endblock %}

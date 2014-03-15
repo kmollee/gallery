@@ -1,0 +1,46 @@
+DEBUG = TEMPLATE_DEBUG = True
+
+ALLOWED_HOSTS = ['website.com',]
+
+ADMINS = (
+    ('User Name', 'user.name@example.com'),
+)
+
+MANAGERS = ADMINS
+
+SECRET_KEY = 'MAKE-UNIQUE-AND-DO-NOT-SHARE-WITH-ANYONE'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'gallery',
+        'USER': 'webuser',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '',
+    }
+}
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+EMAIL_HOST_USER = None
+EMAIL_HOST_PASSWORD = None
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False
+EMAIL_SUBJECT_PREFIX = '[Photo Gallery] '
+DEFAULT_FROM_EMAIL = 'admin@example.com'
+SERVER_EMAIL = 'admin@example.com'
+
+MEDIA_ROOT = '/home/username/gallery/public/media/'
+MEDIA_URL = '/media/'
+
+STATIC_ROOT = '/home/username/gallery/public/static/'
+STATIC_URL = '/static/'
+
+# Project specific settings
+
+AUTH_CODE_USER = 'entersomethinghere'
+AUTH_CODE_ADMIN = 'somethingelsehere'
+AUTH_CODE_ADMIN_GROUP = 'Admin Group Name'
+
+PHOTOS_PER_PAGE = 50

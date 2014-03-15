@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+{% load i18n %}
+
+{% block title %}{% trans 'People' %}{% endblock %}
+{% block header %}{% trans 'People' %}{% endblock %}
+
+{% block actions %}
+    <span class="actions person-actions">
+        {% if perms.photos.add_person %}
+            <a href="{% url 'person_create' %}" class="create">{% trans 'Create Person' %}</a>
+        {% endif %}
+    </span>
+{% endblock %}
+
+{% block content %}
+    <div class="album-list">
+        {% for person in person_list %}
+            <div class="thumb">
+                <a href="{{ person.get_absolute_url }}">
+                    {% if person.cover_photo %}
+                        <img src="{{ person.cover_photo.file_200x200.url|default:"" }}" alt="{{ person.name }}">
+                    {% else %}
+                        <img src="{{ STATIC_URL }}/img/cover-blank.png">
+                    {% endif %}
+                    <div class="name">{{ person.name|truncatechars:"45" }}</div>
+                    {% with count=person.photo_set.count %}
+                        <div class="count">
+                            {% blocktrans count counter=count with total=count|intcomma %}
+                                {{ total }} photo
+                            {% plural %}
+                                {{ total }} photos
+                            {% endblocktrans %}
+                        </div>
+                    {% endwith %}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

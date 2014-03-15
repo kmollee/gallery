@@ -1,0 +1,9 @@
+./install.py:12:13: E201 whitespace after '{'
+./install.py:13:5: E128 continuation line under-indented for visual indent
+./install.py:16:1: E124 closing bracket does not match visual indentation
+./install.py:18:1: E302 expected 2 blank lines, found 1
+./install.py:29:1: E302 expected 2 blank lines, found 1
+./install.py:52:5: E128 continuation line under-indented for visual indent
+./install.py:64:14: E261 at least two spaces before inline comment
+./accounts/tests.py:228:80: E501 line too long (82 > 79 characters)
+./photos/urls.py:55:80: E501 line too long (89 > 79 characters)

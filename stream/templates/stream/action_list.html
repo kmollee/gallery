@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load humanize %}
+
+{% block title %}{% trans 'Recent Activity' %}{% endblock %}
+{% block header %}{% trans 'Recent Activity' %}{% endblock %}
+
+{% block width %}medium{% endblock %}
+
+{% block content %}
+
+    {% for action in action_list %}
+
+        {% ifchanged action.timestamp|date:'F j, Y' %}
+            <h2>{{ action.timestamp|date:'F j, Y' }}</h2>
+        {% endifchanged %}
+
+        <p>
+            {% if action.user.get_absolute_url %}
+                <a href="{{ action.user.get_absolute_url }}">{{ action.user.get_full_name|default:action.user.username }}</a>
+            {% else %}
+                {{ action.user.get_full_name|default:action.user.username }}
+            {% endif %}
+
+            {{ action.verb }}{% if not action.target and not action.action_object %}.{% endif %}
+
+            {% if action.action_object %}
+                {% if action.action_object.get_absolute_url %}
+                    <a href="{{ action.action_object.get_absolute_url }}">{{ action.action_object }}</a>{% if not action.target %}.{% endif %}
+                {% else %}
+                    {{ action.action_object }}{% if not action.target %}.{% endif %}
+                {% endif %}
+            {% endif %}
+
+            {% if action.join %}{{ action.join }}{% endif %}
+
+            {% if action.target %}
+                {% if action.target.get_absolute_url %}
+                    <a href="{{ action.target.get_absolute_url }}">{{ action.target }}</a>.
+                {% else %}
+                    {{ action.target }}.
+                {% endif %}
+            {% endif %}
+        </p>
+
+    {% empty %}
+        <p>{% trans 'There is no recent activity to display.' %}</p>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Profile' %}{% endblock %}
+{% block header %}{% trans 'Profile' %}{% endblock %}
+
+{% block width %}small{% endblock %}
+
+{% block content %}
+
+    <form method="post" action="{% url 'accounts:profile' %}">
+        {% include '_form.html' %}
+        <div class="buttons">
+            <input type="submit" value="{% trans 'Save' %}">
+        </div>
+    </form>
+
+    <p><a href="{% url 'accounts:password_change' %}">{% trans 'Change password.' %}</a></p>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load humanize %}
+
+{% block title %}{% trans 'Locations' %}{% endblock %}
+{% block header %}{% trans 'Locations' %}{% endblock %}
+
+{% block actions %}
+    <span class="actions location-actions">
+        {% if perms.photos.add_location %}
+            <a href="{% url 'location_create' %}" class="create">{% trans 'Create Location' %}</a>
+        {% endif %}
+    </span>
+{% endblock %}
+
+{% block content %}
+    <div class="album-list">
+        {% for location in location_list %}
+            <div class="thumb">
+                <a href="{{ location.get_absolute_url }}">
+                    {% if location.cover_photo %}
+                        <img src="{{ location.cover_photo.file_200x200.url|default:"" }}" alt="{{ location.name }}">
+                    {% else %}
+                        <img src="{{ STATIC_URL }}/img/cover-blank.png">
+                    {% endif %}
+                    <div class="name">{{ location.name|truncatechars:"45" }}</div>
+                    {% with count=location.album_set.count %}
+                        <div class="count">
+                            {% blocktrans count counter=count with total=count|intcomma %}
+                                {{ total }} album
+                            {% plural %}
+                                {{ total }} albums
+                            {% endblocktrans %}
+                        </div>
+                    {% endwith %}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
