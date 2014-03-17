@@ -161,14 +161,9 @@ def tag(request, pk):
 def delete(request, pk):
     photo = get_object_or_404(Photo, pk=pk)
     if request.POST:
-        if photo.next:
-            next = photo.next
-        elif photo.previous:
-            next = photo.previous
-        else:
-            next = photo.album
+        next_url = photo.album.get_absolute_url()
         photo.delete()
-        return json_redirect(next.get_absolute_url())
+        return json_redirect(next_url)
     context = {
         'photo': photo,
         'form_title': 'Delete Photo',

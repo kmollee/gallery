@@ -19,16 +19,16 @@ $(function() {
     });
 
     // Enabling the modal window shows the wrapper and enables the cancel button.
-    function enableModalWindow() {
+    function enableModalWindow(selector) {
         $("#modal-wrapper").show();
         $("#modal .cancel").click(function(event){
-            disableModalWindow();
+            disableModalWindow(selector);
         });
         $("#modal select").chosen();
     }
 
     // Disabling the modal window clears the html and hides the  wrapper.
-    function disableModalWindow() {
+    function disableModalWindow(selector) {
         $("#modal").html("");
         $("#modal-wrapper").hide();
     }
@@ -37,7 +37,7 @@ $(function() {
     // and will catch the form resposne and re-populate the div with the
     // results of the form if status is "ERROR". If status is "OK" then the
     // page will be refreshed with the URL that was sent from the server.
-    function initializeModalForm() {
+    function initializeModalForm(selector) {
         // Change the form in the modal window to an AJAX form.
         $("#modal form").submit(function(event){
             event.preventDefault();
@@ -105,9 +105,9 @@ $(function() {
             $.getJSON($(this).attr("href"), function(data) {
                 if (data["action"] == "display") {
                     $("#modal").html(data["html"])
-                    enableModalWindow();
-                    initializeModalForm();
-                    $("#modal input[type='text']:enabled:first, #modal select:enabled:visible:first").focus();
+                    enableModalWindow(value);
+                    initializeModalForm(value);
+                    $("#modal input[type='text']:enabled:first").focus();
                 }
                 else {
                     console.log(data);
