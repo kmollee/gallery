@@ -3,6 +3,7 @@ __pycache__
 .DS_Store
 .idea
 *.sublime-project
+*.sublime-workspace
 public/media/
 public/static/
 gallery/settings_local.py
