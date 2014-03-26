@@ -97,7 +97,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'utils.ajax_exception.AJAXSimpleExceptionResponse',
+    'utils.middleware.ExceptionLoggingMiddleware',
 )
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'public', 'media')
