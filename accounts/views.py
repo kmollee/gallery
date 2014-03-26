@@ -52,16 +52,14 @@ def profile(request):
 
 
 def password_reset(request):
-    email_template_name = 'accounts/password_reset_email.html'
-    subject_template_name = 'accounts/password_reset_subject.txt'
     form = PasswordResetForm(request.POST or None)
     if form.is_valid():
         opts = {
             'use_https': request.is_secure(),
             'token_generator': default_token_generator,
             'from_email': settings.DEFAULT_FROM_EMAIL,
-            'email_template_name': email_template_name,
-            'subject_template_name': subject_template_name,
+            'email_template_name': 'accounts/password_reset_email.html',
+            'subject_template_name': 'accounts/password_reset_subject.txt',
             'request': request
         }
         form.save(**opts)
