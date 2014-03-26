@@ -9,7 +9,8 @@ def paginate(request, queryset, page_size, page_arg="p", allow_empty=True):
     instance will also have a "this_page" variable that corresponds to the
     current page returned by the paginator.page() method.
     """
-    paginator = Paginator(queryset, page_size, allow_empty_first_page=allow_empty)
+    paginator = Paginator(
+        queryset, page_size, allow_empty_first_page=allow_empty)
     page_num = request.GET.get(page_arg, 1)
 
     try:
