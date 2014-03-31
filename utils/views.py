@@ -1,5 +1,3 @@
-import json
-
 from django.http import JsonResponse
 from django.template import RequestContext
 from django.template.loader import render_to_string
