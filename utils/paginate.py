@@ -21,10 +21,7 @@ def paginate(request, queryset, page_size, page_arg="p", allow_empty=True):
     try:
         page = paginator.page(page_num)
     except InvalidPage as e:
-        raise Http404('Invalid page (%(page_num)s): %(message)s' % {
-            'page_num': page_num,
-            'message': str(e)
-        })
+        raise Http404('Invalid page (%s): %s' % (page_num, str(e)))
 
     # Add our custom "this_page" and "page_arg" variables to this paginator.
     paginator.this_page = page
