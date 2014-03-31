@@ -73,5 +73,4 @@ be added to the group.
 - Add a Years navigation option just like Locations and People.
 - Handle uploading of zip files (extract and pull out images).
 - Pull exif data out of photos when uploaded.
-- Fix the delete_files_on_change signal.
 - Tests are always a good thing.
