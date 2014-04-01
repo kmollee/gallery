@@ -4,7 +4,7 @@
 {% if paginator.count > 0 %}
 
     {% if paginator.this_page.has_previous %}
-        <a href="{{ paginator.previous_url }}" class="previous keydown-navigate-left">&lt&lt; Prev</a>
+        <a href="{{ paginator.previous_url }}" class="previous" data-navigate="left">&lt&lt; Prev</a>
     {% else %}
         <span class="previous">&lt&lt; Prev</span>
     {% endif %}
@@ -16,7 +16,7 @@
     </span>
 
     {% if paginator.this_page.has_next %}
-        <a href="{{ paginator.next_url }}" class="next keydown-navigate-right">Next &gt;&gt;</a>
+        <a href="{{ paginator.next_url }}" class="next" data-navigate="right">Next &gt;&gt;</a>
     {% else %}
         <span class="next">Next &gt;&gt;</span>
     {% endif %}

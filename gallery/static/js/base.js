@@ -4,7 +4,8 @@ $(function() {
     // Still undecided if I want to use this.
     //$("#messages").delay(6000).hide("blind", 500);
 
-    function keydownNavigate(selector) {
+    function keydownNavigate(direction) {
+        selector = $("[data-navigate=" + direction + "]:last");
         if (selector.attr("href")) {
             window.location = selector.attr("href");
         }
@@ -12,10 +13,11 @@ $(function() {
 
     // Handle the keydown navigation for images and albums.
     $(document).keydown(function(event){
-        if (event.which == 37 ) (keydownNavigate($(".keydown-navigate-left:last")) );
-        if (event.which == 38 && $(document).scrollTop() == 0 ) (keydownNavigate($(".keydown-navigate-up:last")) );
-        if (event.which == 39 ) (keydownNavigate($(".keydown-navigate-right:last")) );
-        if (event.which == 40 ) (keydownNavigate($(".keydown-navigate-down:last")) );
+        if (event.which == 37 ) (keydownNavigate($("left")) );
+        if (event.which == 39 ) (keydownNavigate($("right")) );
+        if (event.which == 40 ) (keydownNavigate($("down")) );
+        // Only scroll up if we are at the top of the page.
+        if (event.which == 38 && $(document).scrollTop() == 0 ) (keydownNavigate($("up")) );
     });
 
     // Enabling the modal window shows the wrapper and enables the cancel button.

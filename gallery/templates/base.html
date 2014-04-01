@@ -15,7 +15,7 @@
 <div id="topbar">
     <div class="title">
         <h1>
-            <a href="{% url 'home' %}" class="keydown-navigate-up">{% trans 'Photo Gallery' %}</a>
+            <a href="{% url 'home' %}" data-navigate="up">{% trans 'Photo Gallery' %}</a>
             <span class="sub">{% block header %}Untitled Page{% endblock %}</span>
         </h1>
     </div>
@@ -41,7 +41,7 @@
 <div id="toolbar">
     <div class="left">
         {% if back_link %}
-            <a href="{{ back_link.url }}" class="keydown-navigate-up">&lt;&lt; {{ back_link.title }}</a>
+            <a href="{{ back_link.url }}" data-navigate="up">&lt;&lt; {{ back_link.title }}</a>
         {% endif %}
     </div>
     <div class="pagination">
