@@ -6,8 +6,8 @@ from photos.models import Album, Photo, Location, Person
 from photos.utils import file_allowed, friendly_filename
 
 
-AlbumForm = modelform_factory(Album,
-                              fields=['name', 'month', 'year', 'location'])
+AlbumForm = modelform_factory(
+    Album, fields=['name', 'month', 'year', 'location'])
 LocationRenameForm = modelform_factory(Location, fields=['name', ])
 PersonRenameForm = modelform_factory(Person, fields=['name', ])
 PhotoRenameForm = modelform_factory(Photo, fields=['name', ])
