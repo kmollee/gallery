@@ -14,7 +14,7 @@ DATABASES = {
 }
 
 ADMINS = (
-    ('Tim Shaffer', 'timshaffer@me.com'),
+    ('Local Admin', 'root@localhost'),
 )
 
 MANAGERS = ADMINS
