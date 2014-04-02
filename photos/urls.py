@@ -51,8 +51,7 @@ urlpatterns = patterns(
         'album.detail', name='album'),
 
     # alternate ways to get to a photo
-    url(
-        r'^locations/(?P<location_pk>\d+)/albums/(?P<album_pk>\d+)/photos/(?P<pk>\d+)/$',
+    url(r'^locations/(?P<location_pk>\d+)/albums/(?P<album_pk>\d+)/photos/(?P<pk>\d+)/$',
         'photo.detail', name='photo'),
     url(r'^people/(?P<person_pk>\d+)/photos/(?P<pk>\d+)/$', 'photo.detail',
         name='photo'),
