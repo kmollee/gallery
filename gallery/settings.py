@@ -54,8 +54,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
 )
 
-STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
-
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
@@ -105,32 +103,6 @@ MEDIA_URL = '/media/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'public', 'static')
 STATIC_URL = '/static/'
-
-PIPELINE_CSS = {
-    'gallery': {
-        'source_filenames': (
-            'css/reset.css',
-            'css/fonts.css',
-            'css/base.css',
-            'chosen-1.1.0/chosen.css'
-        ),
-        'output_filename': 'css/gallery.css',
-    },
-}
-
-PIPELINE_JS = {
-    'gallery': {
-        'source_filenames': (
-            'js/base.js',
-            'chosen-1.1.0/chosen.jquery.js',
-        ),
-        'output_filename': 'js/gallery.js',
-    }
-}
-
-PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.cssmin.CSSMinCompressor'
-
-PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.jsmin.JSMinCompressor'
 
 ALLOWED_EXTENSIONS = 'zip bmp raw jpg jpeg png gif tiff'.split()
 

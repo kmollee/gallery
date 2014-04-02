@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 
 {% load i18n %}
-{% load compressed %}
+{% load staticfiles %}
 
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>{% trans 'Photo Gallery' %} - {% block title %}Untitled Page{% endblock %}</title>
-    {% compressed_css 'gallery' %}
+    <link href="{% static 'css/reset.css' %}" rel="stylesheet" type="text/css" media="screen">
+    <link href="{% static 'css/fonts.css' %}" rel="stylesheet" type="text/css" media="screen">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet" type="text/css" media="screen">
     {% block extra_head %}{% endblock %}
 </head>
 <body id="body-{% block width %}large{% endblock %}">
@@ -69,7 +71,8 @@
 <div id="modal-wrapper"><div id="modal"></div></div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-{% compressed_js 'gallery' %}
+<script src="{% static 'js/base.js' %}"></script>
+<script src="{% static 'chosen-1.1.0/chosen.jquery.js' %}"></script>
 {% block extra_js %}{% endblock %}
 <script>$.ajaxSetup({data:{csrfmiddlewaretoken:"{{csrf_token}}"},});</script>
 
