@@ -24,11 +24,11 @@ perhaps someone else may find it useful for inspiration.
 
 3. Copy the settings template to create your local settings:
 
-        cp gallery/settings/local.template gallery/settings/local.py
+        cp gallery/settings_local.template gallery/settings_local.py
 
 4. Edit the local settings file with your settings:
 
-        vi gallery/settings/local.py
+        vi gallery/settings_local.py
 
 5. Create the database and admin user:
 
