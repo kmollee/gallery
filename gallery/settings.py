@@ -49,17 +49,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'gallery', 'static'),
 )
 
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-)
-
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
-
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
