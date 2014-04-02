@@ -82,7 +82,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'pipeline',
     'accounts',
     'photos',
     'stream',
