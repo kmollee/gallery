@@ -181,6 +181,5 @@ def download(request, pk):
     file_data = photo.file.file.read()
     mimetype = mimetypes.guess_type(photo.file.name, strict=False)[0]
     response = HttpResponse(file_data, content_type=mimetype)
-    response['Content-Disposition'] = 'attachment; \
-            filename=%s' % photo.file.name.split('/')[-1]
+    response['Content-Disposition'] = 'attachment; filename=%s' % photo.file.name.split('/')[-1]
     return response

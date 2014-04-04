@@ -126,9 +126,8 @@ def download(request, pk):
     with zipfile.ZipFile(temp_zip, 'w') as zipf:
         for photo in album.photo_set.all():
             full_path = os.path.join(settings.MEDIA_ROOT, photo.file.name)
-            zipf.write(full_path, '%s.%s' % (photo.file.name.split('/')[-1]))
+            zipf.write(full_path, '%s' % (photo.file.name.split('/')[-1]))
     temp_zip.seek(0)
     response = HttpResponse(temp_zip.read(), content_type='application/zip')
-    response['Content-Disposition'] = 'attachment; \
-            filename=%s.zip' % album.name
+    response['Content-Disposition'] = 'attachment; filename=%s.zip' % album.name
     return response
