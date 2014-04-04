@@ -3,9 +3,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.conf import settings
 
+from stream.views import action_list
+
 urlpatterns = patterns(
     '',
-    url(r'^$', 'stream.views.action_list', name='home'),
+    url(r'^$', action_list, name='home'),
     url(r'^auth/', include('accounts.urls', 'accounts')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('photos.urls')),
