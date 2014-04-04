@@ -112,6 +112,7 @@ def merge(request, pk):
         return json_redirect(album.get_absolute_url())
     context = {
         'album': album,
+        'form': form,
         'form_title': 'Merge Album',
         'form_submit': 'Merge'
     }
