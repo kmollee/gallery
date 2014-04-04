@@ -4,7 +4,7 @@ from photos import views
 from photos.views import album, photo, person, location
 
 urlpatterns = patterns(
-    'photos.views',
+    '',
     url(r'^upload/$', views.upload, name='upload'),
     url(r'^search/$', views.search, name='search'),
     url(r'^search/(?P<query>[\w=&]+)/$', views.results, name='results'),
