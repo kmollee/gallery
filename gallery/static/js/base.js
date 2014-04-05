@@ -13,11 +13,11 @@ $(function() {
 
     // Handle the keydown navigation for images and albums.
     $(document).keydown(function(event){
-        if (event.which == 37 ) (keydownNavigate($("left")) );
-        if (event.which == 39 ) (keydownNavigate($("right")) );
-        if (event.which == 40 ) (keydownNavigate($("down")) );
+        if (event.which == 37 ) (keydownNavigate("left") );
+        if (event.which == 39 ) (keydownNavigate("right") );
+        if (event.which == 40 ) (keydownNavigate("down") );
         // Only scroll up if we are at the top of the page.
-        if (event.which == 38 && $(document).scrollTop() == 0 ) (keydownNavigate($("up")) );
+        if (event.which == 38 && $(document).scrollTop() == 0 ) (keydownNavigate("up") );
     });
 
     // Enabling the modal window shows the wrapper and enables the cancel button.
