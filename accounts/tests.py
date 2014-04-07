@@ -44,13 +44,14 @@ class ProfileView(AuthenticatedTestCase):
         """
         self.login()
         form_data = {'first_name': 'Jacob', 'last_name': 'User',
-                     'email': 'jacob@example.com'}
+                     'email': 'newemail@example.com'}
         response = self.client.post(reverse('accounts:profile'), form_data)
         self.assertRedirects(response, reverse('accounts:profile'),
                              status_code=302, target_status_code=200)
-        user = User.objects.get_by_natural_key(self.user.username)
+        user = User.objects.get(username=self.user.username)
         self.assertEqual(user.first_name, 'Jacob')
         self.assertEqual(user.last_name, 'User')
+        self.assertEqual(user.email, 'newemail@example.com')
 
     def test_cant_change_username(self):
         """
@@ -62,7 +63,7 @@ class ProfileView(AuthenticatedTestCase):
         self.assertRedirects(response, reverse('accounts:profile'),
                              status_code=302, target_status_code=200)
         with self.assertRaises(User.DoesNotExist):
-            user = User.objects.get_by_natural_key('hacked')
+            user = User.objects.get(username='hacked')
 
 
 class LogoutView(AuthenticatedTestCase):
