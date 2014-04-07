@@ -104,9 +104,7 @@ class LoginView(TestCaseWithUser):
         response = self.client.post(reverse('accounts:login'), form_data)
         self.assertTrue(SESSION_KEY not in self.client.session)
         self.assertFormError(
-            response,
-            'form',
-            '__all__',
+            response, 'form', '__all__',
             AuthenticationForm.error_messages['invalid_login'] % {
                 'username': User._meta.get_field('username').verbose_name
             })
@@ -199,8 +197,8 @@ class PasswordResetView(TestCaseWithUser):
         Test that invalid email addresses will be caught.
         """
         form_data = {'email': 'invalid@invalid.com'}
-        response = self.client.post(reverse('accounts:password_reset'),
-                                    form_data)
+        response = self.client.post(
+            reverse('accounts:password_reset'), form_data)
         self.assertFormError(response, 'form', 'email',
                              PasswordResetForm.error_messages['invalid_email'])
         self.assertEqual(len(mail.outbox), 0)
@@ -210,11 +208,11 @@ class PasswordResetView(TestCaseWithUser):
         Test that the valid email addresses will get an email.
         """
         form_data = {'email': self.user.email}
-        response = self.client.post(reverse('accounts:password_reset'),
-                                    form_data)
+        response = self.client.post(
+            reverse('accounts:password_reset'), form_data)
         self.assertRedirects(response, reverse('accounts:login'),
                              status_code=302, target_status_code=200)
         self.assertEqual(len(mail.outbox), 1)
         self.assertTrue('http://' in mail.outbox[0].body)
-        self.assertEqual(settings.DEFAULT_FROM_EMAIL,
-                         mail.outbox[0].from_email)
+        self.assertEqual(
+            settings.DEFAULT_FROM_EMAIL, mail.outbox[0].from_email)
