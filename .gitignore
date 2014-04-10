@@ -1,11 +1,25 @@
+# temporary Python files
 __pycache__
 *.py[cod]
+
+# operating system files
 .DS_Store
+desktop.ini
+
+# IDE generated files
 .idea
 *.sublime-project
 *.sublime-workspace
+
+# media and static
 public/media/
 public/static/
+
+# local settings
 gallery/settings_local.py
+
+# cache
 tmp/cache
+
+# development database
 database.sqlite3
