@@ -1,3 +1,4 @@
+from django.utils.translation import ugettext as _
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.urlresolvers import reverse
@@ -27,7 +28,7 @@ def detail(request, pk):
         'location': location,
         'paginator': paginator,
         'album_list': queryset,
-        'back_link': {'url': reverse('locations'), 'title': 'Locations'}
+        'back_link': {'url': reverse('locations'), 'title': _('Locations')}
     }
     return render(request, 'photos/location_detail.html', context)
 
@@ -44,8 +45,8 @@ def create(request):
         return json_redirect(location.get_absolute_url())
     context = {
         'form': form,
-        'form_title': 'Create Location',
-        'form_submit': 'Save'
+        'form_title': _('Create Location'),
+        'form_submit': _('Save')
     }
     return json_render(request, 'photos/ajax_form.html', context)
 
@@ -59,8 +60,8 @@ def rename(request, pk):
         return json_redirect(location.get_absolute_url())
     context = {
         'form': form,
-        'form_title': 'Rename Location',
-        'form_submit': 'Save'
+        'form_title': _('Rename Location'),
+        'form_submit': _('Save')
     }
     return json_render(request, 'photos/ajax_form.html', context)
 
@@ -73,11 +74,11 @@ def delete(request, pk):
         return json_redirect(reverse('locations'))
     context = {
         'location': location,
-        'form_title': 'Delete Location',
-        'form_submit': 'Delete',
+        'form_title': _('Delete Location'),
+        'form_submit': _('Delete'),
         'form_messages': (
-            'Are you sure you want to delete this location?',
-            'This will also remove this location from any albums.'
+            _('Are you sure you want to delete this location?'),
+            _('This will also remove this location from any albums.')
         )
     }
     return json_render(request, 'photos/ajax_form.html', context)

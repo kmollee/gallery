@@ -1,3 +1,4 @@
+{% load i18n %}
 <h2>{{ form_title }}</h2>
 <form method="post" action="{{ request.path }}">
     {% for message in form_messages %}
@@ -5,7 +6,7 @@
     {% endfor %}
     {% include '_form.html' %}
     <div class="buttons">
-        <input type="button" class="cancel" value="Cancel">
+        <input type="button" class="cancel" value="{% trans 'Cancel' %}">
         <input type="submit" value="{{ form_submit }}">
     </div>
 </form>

@@ -1,3 +1,4 @@
+from django.utils.translation import ugettext as _
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.urlresolvers import reverse
@@ -28,7 +29,7 @@ def detail(request, pk):
         'person': person,
         'paginator': paginator,
         'photo_list': queryset,
-        'back_link': {'url': reverse('people'), 'title': 'People'}
+        'back_link': {'url': reverse('people'), 'title': _('People')}
     }
     return render(request, 'photos/person_detail.html', context)
 
@@ -41,11 +42,11 @@ def delete(request, pk):
         return json_redirect(reverse('people'))
     context = {
         'person': person,
-        'form_title': 'Delete Person',
-        'form_submit': 'Delete',
+        'form_title': _('Delete Person'),
+        'form_submit': _('Delete'),
         'form_messages': (
-            'Are you sure you want to delete this person?',
-            'This will also remove tags from any photos.'
+            _('Are you sure you want to delete this person?'),
+            _('This will also remove tags from any photos.')
         )
     }
     return json_render(request, 'photos/ajax_form.html', context)
@@ -63,8 +64,8 @@ def create(request):
         return json_redirect(person.get_absolute_url())
     context = {
         'form': form,
-        'form_title': 'Create Person',
-        'form_submit': 'Save'
+        'form_title': _('Create Person'),
+        'form_submit': _('Save')
     }
     return json_render(request, 'photos/ajax_form.html', context)
 
@@ -78,7 +79,7 @@ def rename(request, pk):
         return json_redirect(person.get_absolute_url())
     context = {
         'form': form,
-        'form_title': 'Rename Person',
-        'form_submit': 'Save'
+        'form_title': _('Rename Person'),
+        'form_submit': _('Save')
     }
     return json_render(request, 'photos/ajax_form.html', context)

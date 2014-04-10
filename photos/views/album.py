@@ -2,6 +2,7 @@ import os
 import tempfile
 import zipfile
 
+from django.utils.translation import ugettext as _
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.urlresolvers import reverse
@@ -29,7 +30,7 @@ def get_back_link(request, album, **kwargs):
         }
     return {
         'url': reverse('albums'),
-        'title': 'Albums'
+        'title': _('Albums')
     }
 
 
@@ -64,8 +65,8 @@ def create(request):
         return json_redirect(album.get_absolute_url())
     context = {
         'form': form,
-        'form_title': 'Create Album',
-        'form_submit': 'Save'
+        'form_title': _('Create Album'),
+        'form_submit': _('Save')
     }
     return json_render(request, 'photos/ajax_form.html', context)
 
@@ -79,8 +80,8 @@ def edit(request, pk):
         return json_redirect(album.get_absolute_url())
     context = {
         'form': form,
-        'form_title': 'Edit Album',
-        'form_submit': 'Save'
+        'form_title': _('Edit Album'),
+        'form_submit': _('Save')
     }
     return json_render(request, 'photos/ajax_form.html', context)
 
@@ -93,11 +94,11 @@ def delete(request, pk):
         return json_redirect(reverse('albums'))
     context = {
         'album': album,
-        'form_title': 'Delete Album',
-        'form_submit': 'Delete',
+        'form_title': _('Delete Album'),
+        'form_submit': _('Delete'),
         'form_messages': (
-            'Are you sure you want to delete this album?',
-            'This will also delete all the photos in the album.'
+            _('Are you sure you want to delete this album?'),
+            _('This will also delete all the photos in the album.')
         )
     }
     return json_render(request, 'photos/ajax_form.html', context)
@@ -113,8 +114,8 @@ def merge(request, pk):
     context = {
         'album': album,
         'form': form,
-        'form_title': 'Merge Album',
-        'form_submit': 'Merge'
+        'form_title': _('Merge Album'),
+        'form_submit': _('Merge')
     }
     return json_render(request, 'photos/ajax_form.html', context)
 

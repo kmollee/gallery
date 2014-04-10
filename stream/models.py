@@ -59,12 +59,12 @@ class Action(models.Model):
         }
         if self.target:
             if self.action_object:
-                return _('%(actor)s %(verb)s %(action_object)s %(join)s \
-                    %(target)s') % ctx
-            return _('%(actor)s %(verb)s %(target)s') % ctx
+                return '%(actor)s %(verb)s %(action_object)s %(join)s \
+                    %(target)s' % ctx
+            return '%(actor)s %(verb)s %(target)s' % ctx
         if self.action_object:
-            return _('%(actor)s %(verb)s %(action_object)s') % ctx
-        return _('%(actor)s %(verb)s') % ctx
+            return '%(actor)s %(verb)s %(action_object)s' % ctx
+        return '%(actor)s %(verb)s' % ctx
 
 
 class ActionableModel(models.Model):

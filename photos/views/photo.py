@@ -1,5 +1,6 @@
 import mimetypes
 
+from django.utils.translation import ugettext as _
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
@@ -37,7 +38,7 @@ def get_back_link(request, photo, **kwargs):
     if 'query' in kwargs:
         return {
             'url': reverse('results', kwargs={'query': kwargs['query']}),
-            'title': 'Results'
+            'title': _('Results')
         }
     return {
         'url': reverse('album', kwargs={'pk': photo.album.pk}),
@@ -121,8 +122,8 @@ def move(request, pk):
         return json_redirect(photo.get_absolute_url())
     context = {
         'form': form,
-        'form_title': 'Move Photo',
-        'form_submit': 'Save'
+        'form_title': _('Move Photo'),
+        'form_submit': _('Save')
     }
     return json_render(request, 'photos/ajax_form.html', context)
 
@@ -136,8 +137,8 @@ def rename(request, pk):
         return json_redirect(photo.get_absolute_url())
     context = {
         'form': form,
-        'form_title': 'Rename Photo',
-        'form_submit': 'Save'
+        'form_title': _('Rename Photo'),
+        'form_submit': _('Save')
     }
     return json_render(request, 'photos/ajax_form.html', context)
 
@@ -151,8 +152,8 @@ def tag(request, pk):
         return json_redirect(photo.get_absolute_url())
     context = {
         'form': form,
-        'form_title': 'Tag Photo',
-        'form_submit': 'Save'
+        'form_title': _('Tag Photo'),
+        'form_submit': _('Save')
     }
     return json_render(request, 'photos/ajax_form.html', context)
 
@@ -166,10 +167,10 @@ def delete(request, pk):
         return json_redirect(next_url)
     context = {
         'photo': photo,
-        'form_title': 'Delete Photo',
-        'form_submit': 'Delete',
+        'form_title': _('Delete Photo'),
+        'form_submit': _('Delete'),
         'form_messages': (
-            'Are you sure you want to delete this photo?',
+            _('Are you sure you want to delete this photo?'),
         )
     }
     return json_render(request, 'photos/ajax_form.html', context)
