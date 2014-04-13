@@ -35,6 +35,12 @@ $(function() {
         $("#modal-wrapper").hide();
     }
 
+    // There was a processing error, so log it and alert the user.
+    function errorProcessing(data) {
+        console.log(data);
+        alert("Error processing request. Please try again later.");
+    }
+
     // Initializing the modal form will change the form to an AJAX form
     // and will catch the form resposne and re-populate the div with the
     // results of the form if status is "ERROR". If status is "OK" then the
@@ -48,24 +54,21 @@ $(function() {
                 url: $(this).attr("action"),
                 data: $(this).serialize(),
                 success: function(data) {
-                    console.log(data);
-                    if (data["action"] == "redirect") {
+                    if (data.url) {
                         disableModalWindow();
-                        window.location = data["url"];
+                        window.location = data.url;
                     }
-                    else if (data["action"] == "display") {
-                        $("#modal").html(data["html"]);
+                    else if (data.html) {
+                        $("#modal").html(data.html);
                         enableModalWindow();
                         initializeModalForm();
                     }
                     else {
-                        console.log(data);
-                        alert("Error processing request. Please try again later.");
+                        errorProcessing(data);
                     }
                 },
                 error: function(data){
-                    console.log(data);
-                    alert("Error processing request. Please try again later.");
+                    errorProcessing(data);
                 }
             });
         });
@@ -85,8 +88,7 @@ $(function() {
                     new Date().getTime());
             },
             error: function(data){
-                console.log(data);
-                alert("Error processing request. Please try again later.");
+                errorProcessing(data);
             }
         });
     });
@@ -105,15 +107,14 @@ $(function() {
         $(value).click(function(event){
             event.preventDefault();
             $.getJSON($(this).attr("href"), function(data) {
-                if (data["action"] == "display") {
-                    $("#modal").html(data["html"])
+                if (data.html) {
+                    $("#modal").html(data.html)
                     enableModalWindow(value);
                     initializeModalForm(value);
                     $("#modal input[type='text']:enabled:first").focus();
                 }
                 else {
-                    console.log(data);
-                    alert("Error processing request. Please try again later.");
+                    errorProcessing(data);
                 }
             });
         });

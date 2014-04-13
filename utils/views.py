@@ -12,15 +12,12 @@ def json_render(request, template_name, context, **kwargs):
     """
     if not request.is_ajax():
         raise PermissionDenied("Must be an AJAX request.")
-    data = {
-        'action': 'display',
-        'html': render_to_string(
-            template_name, context, context_instance=RequestContext(request))
-    }
-    return JsonResponse(data, **kwargs)
+    html = render_to_string(
+        template_name, context, context_instance=RequestContext(request))
+    return JsonResponse({'html': html}, **kwargs)
 
 
-def json_redirect(url, **kwargs):
+def json_redirect(request, url, **kwargs):
     """
     Returns a JSON response for redirecting to a new URL. This is very specific
     to this project and depends on the JavaScript supporting the result that
@@ -28,5 +25,4 @@ def json_redirect(url, **kwargs):
     """
     if not request.is_ajax():
         raise PermissionDenied("Must be an AJAX request.")
-    data = {'action': 'redirect', 'url': url}
-    return JsonResponse(data, **kwargs)
+    return JsonResponse({'url': url}, **kwargs)

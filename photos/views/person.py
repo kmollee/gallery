@@ -39,7 +39,7 @@ def delete(request, pk):
     person = get_object_or_404(Person, pk=pk)
     if request.POST:
         person.delete()
-        return json_redirect(reverse('people'))
+        return json_redirect(request, reverse('people'))
     context = {
         'person': person,
         'form_title': _('Delete Person'),
@@ -61,7 +61,7 @@ def create(request):
             request.user,
             'created the person',
             target=person)
-        return json_redirect(person.get_absolute_url())
+        return json_redirect(request, person.get_absolute_url())
     context = {
         'form': form,
         'form_title': _('Create Person'),
@@ -76,7 +76,7 @@ def rename(request, pk):
     form = PersonRenameForm(request.POST or None, instance=person)
     if form.is_valid():
         person = form.save()
-        return json_redirect(person.get_absolute_url())
+        return json_redirect(request, person.get_absolute_url())
     context = {
         'form': form,
         'form_title': _('Rename Person'),

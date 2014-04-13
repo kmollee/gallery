@@ -62,7 +62,7 @@ def create(request):
     form = AlbumForm(request.POST or None)
     if form.is_valid():
         album = form.save()
-        return json_redirect(album.get_absolute_url())
+        return json_redirect(request, album.get_absolute_url())
     context = {
         'form': form,
         'form_title': _('Create Album'),
@@ -77,7 +77,7 @@ def edit(request, pk):
     form = AlbumForm(request.POST or None, instance=album)
     if form.is_valid():
         album = form.save()
-        return json_redirect(album.get_absolute_url())
+        return json_redirect(request, album.get_absolute_url())
     context = {
         'form': form,
         'form_title': _('Edit Album'),
@@ -91,7 +91,7 @@ def delete(request, pk):
     album = get_object_or_404(Album, pk=pk)
     if request.POST:
         album.delete()
-        return json_redirect(reverse('albums'))
+        return json_redirect(request, reverse('albums'))
     context = {
         'album': album,
         'form_title': _('Delete Album'),
@@ -110,7 +110,7 @@ def merge(request, pk):
     form = AlbumMergeForm(request.POST or None, instance=album)
     if form.is_valid():
         album = form.save()
-        return json_redirect(album.get_absolute_url())
+        return json_redirect(request, album.get_absolute_url())
     context = {
         'album': album,
         'form': form,

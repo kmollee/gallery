@@ -42,7 +42,7 @@ def create(request):
             request.user,
             'created the location',
             target=location)
-        return json_redirect(location.get_absolute_url())
+        return json_redirect(request, location.get_absolute_url())
     context = {
         'form': form,
         'form_title': _('Create Location'),
@@ -57,7 +57,7 @@ def rename(request, pk):
     form = LocationRenameForm(request.POST or None, instance=location)
     if form.is_valid():
         location = form.save()
-        return json_redirect(location.get_absolute_url())
+        return json_redirect(request, location.get_absolute_url())
     context = {
         'form': form,
         'form_title': _('Rename Location'),
@@ -71,7 +71,7 @@ def delete(request, pk):
     location = get_object_or_404(Location, pk=pk)
     if request.POST:
         location.delete()
-        return json_redirect(reverse('locations'))
+        return json_redirect(request, reverse('locations'))
     context = {
         'location': location,
         'form_title': _('Delete Location'),

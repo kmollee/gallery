@@ -110,7 +110,7 @@ def rotate(request, pk):
         rotate_image(photo.file)
         for thumb in photo.thumbnail_set.all():
             rotate_image(thumb.file)
-    return json_redirect(photo.get_absolute_url())
+    return json_redirect(request, photo.get_absolute_url())
 
 
 @permission_required('photos.edit_photo')
@@ -119,7 +119,7 @@ def move(request, pk):
     form = PhotoMoveForm(request.POST or None, instance=photo)
     if form.is_valid():
         photo = form.save()
-        return json_redirect(photo.get_absolute_url())
+        return json_redirect(request, photo.get_absolute_url())
     context = {
         'form': form,
         'form_title': _('Move Photo'),
@@ -134,7 +134,7 @@ def rename(request, pk):
     form = PhotoRenameForm(request.POST or None, instance=photo)
     if form.is_valid():
         photo = form.save()
-        return json_redirect(photo.get_absolute_url())
+        return json_redirect(request, photo.get_absolute_url())
     context = {
         'form': form,
         'form_title': _('Rename Photo'),
@@ -149,7 +149,7 @@ def tag(request, pk):
     form = PhotoTagForm(request.POST or None, instance=photo)
     if form.is_valid():
         photo = form.save()
-        return json_redirect(photo.get_absolute_url())
+        return json_redirect(request, photo.get_absolute_url())
     context = {
         'form': form,
         'form_title': _('Tag Photo'),
@@ -164,7 +164,7 @@ def delete(request, pk):
     if request.POST:
         next_url = photo.album.get_absolute_url()
         photo.delete()
-        return json_redirect(next_url)
+        return json_redirect(request, next_url)
     context = {
         'photo': photo,
         'form_title': _('Delete Photo'),
