@@ -32,18 +32,18 @@ class Action(models.Model):
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('user'))
 
-    target_content_type = models.ForeignKey(ContentType, related_name='target',
-                                            blank=True, null=True)
+    target_content_type = models.ForeignKey(
+        ContentType, related_name='target', blank=True, null=True)
     target_object_id = models.CharField(max_length=200, blank=True, null=True)
-    target = generic.GenericForeignKey('target_content_type',
-                                       'target_object_id')
+    target = generic.GenericForeignKey(
+        'target_content_type', 'target_object_id')
 
     action_object_content_type = models.ForeignKey(
         ContentType, related_name='action_object', blank=True, null=True)
     action_object_object_id = models.CharField(
         max_length=200, blank=True, null=True)
-    action_object = generic.GenericForeignKey('action_object_content_type',
-                                              'action_object_object_id')
+    action_object = generic.GenericForeignKey(
+        'action_object_content_type', 'action_object_object_id')
 
     class Meta:
         verbose_name = _('action')
