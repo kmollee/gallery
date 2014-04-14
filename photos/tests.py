@@ -32,6 +32,7 @@ class SuperusreViews(TestCase):
         """
         # create invalid location, display form again
         result = self.ajax_post(reverse('location_create'), {'name': ''})
+        self.assertTrue('html' in result)
 
         # create valid location, redirects
         result = self.ajax_post(reverse('location_create'), {'name': 'test location'})
@@ -77,6 +78,7 @@ class SuperusreViews(TestCase):
         """
         # create invalid person, display form again
         result = self.ajax_post(reverse('person_create'), {'name': ''})
+        self.assertTrue('html' in result)
 
         # create valid person, redirects
         result = self.ajax_post(reverse('person_create'), {'name': 'test person'})
@@ -122,6 +124,7 @@ class SuperusreViews(TestCase):
         """
         # create invalid album, display form again
         result = self.ajax_post(reverse('album_create'), {'name': ''})
+        self.assertTrue('html' in result)
 
         # create valid album, redirects
         result = self.ajax_post(reverse('album_create'), {'name': 'test album'})
