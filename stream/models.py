@@ -5,6 +5,7 @@ from django.contrib.contenttypes import generic
 from django.conf import settings
 from django.utils import timezone
 from django.db import models
+from django.db.models import signals
 
 
 class Action(models.Model):
@@ -67,23 +68,22 @@ class Action(models.Model):
         return '%(actor)s %(verb)s' % ctx
 
 
-class ActionableModel(models.Model):
+def delete_actions_on_delete(sender, **kwargs):
     """
-    We define this model so that any class that should show up in the stream
-    can subclass it. That way, if the object is deleted, any subsequent Action
-    objects will also be deleted. If you don't use this as the base class,
-    the associated Action will not be deleted whenever the associated model
-    instance is deleted.
+    This signal attempts to delete any activity which is related to Action
+    through a generic relation.
     """
+    content_type = ContentType.objects.get_for_model(kwargs['instance'])
+    instance_pk = kwargs['instance'].pk
 
-    stream_action_objects = GenericRelation(
-        Action,
-        content_type_field='action_object_content_type',
-        object_id_field='action_object_object_id')
-    stream_action_targets = GenericRelation(
-        Action,
-        content_type_field='target_content_type',
-        object_id_field='target_object_id')
+    Action.objects.filter(
+        action_object_object_id=instance_pk,
+        action_object_content_type=content_type
+    ).delete()
 
-    class Meta:
-        abstract = True
+    Action.objects.filter(
+        target_object_id=instance_pk,
+        target_content_type=content_type
+    ).delete()
+
+models.signals.pre_delete.connect(delete_actions_on_delete)

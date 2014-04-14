@@ -6,7 +6,6 @@ from django.utils.translation import ugettext_lazy as _
 from utils.filestorage.uploads import get_unique_upload_path
 from utils.filestorage.signals import delete_files_on_delete, \
     delete_files_on_change
-from stream.models import ActionableModel
 from photos.utils import generate_thumbnail
 
 MONTH_CHOICES = ((mon, datetime.date(2000, mon, 1).strftime('%B')) for mon in
@@ -16,7 +15,7 @@ YEAR_CHOICES = ((year, year) for year in
                 range(1950, (datetime.datetime.now().year + 1)))
 
 
-class Location(ActionableModel):
+class Location(models.Model):
     """A location is a physical location that can be applied to an album."""
 
     name = models.CharField(_('name'), max_length=200)
@@ -43,7 +42,7 @@ class Location(ActionableModel):
         return self.album_set.first().photo_set.first()
 
 
-class Person(ActionableModel):
+class Person(models.Model):
     """A person is an actual person that can be tagged in photos."""
 
     name = models.CharField(_('name'), max_length=200)
@@ -69,7 +68,7 @@ class Person(ActionableModel):
         return self.photo_set.first()
 
 
-class Album(ActionableModel):
+class Album(models.Model):
     """
     An album is a collection of photos. It belongs to a location and can also
     have a month and a year associated with it.
@@ -120,7 +119,7 @@ class Album(ActionableModel):
         return ' '.join(output)
 
 
-class Photo(ActionableModel):
+class Photo(models.Model):
     """
     A photo is just that - a single photo. It can belong to only one album.
     """
@@ -218,9 +217,10 @@ class Thumbnail(models.Model):
             self.generate()
         super().save(force_insert, force_update, using, update_fields)
 
-
+# Delete photo files when Photo instance is deleted.
 models.signals.pre_delete.connect(delete_files_on_delete, sender=Photo)
 models.signals.pre_save.connect(delete_files_on_change, sender=Photo)
 
+# Delete thumbnail files when Thumbnail is deleted.
 models.signals.pre_delete.connect(delete_files_on_delete, sender=Thumbnail)
 models.signals.pre_save.connect(delete_files_on_change, sender=Thumbnail)
