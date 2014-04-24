@@ -8,11 +8,11 @@
 {% block actions %}
     <div class="actions album-actions">
         {% if perms.photos.change_album %}
-            <a href="{% url 'album_edit' album.pk %}" class="rename">{% trans 'Edit' %}</a>
-            <a href="{% url 'album_merge' album.pk %}" class="merge">{% trans 'Merge' %}</a>
+            <a href="{% url 'album_edit' album.pk %}" data-modal="form">{% trans 'Edit' %}</a>
+            <a href="{% url 'album_merge' album.pk %}" data-modal="form">{% trans 'Merge' %}</a>
         {% endif %}
         {% if perms.photos.delete_album %}
-            <a href="{% url 'album_delete' album.pk %}" class="delete">{% trans 'Delete' %}</a>
+            <a href="{% url 'album_delete' album.pk %}" data-modal="form">{% trans 'Delete' %}</a>
         {% endif %}
         <a href="{% url 'album_download' album.pk %}">{% trans 'Download' %}</a>
     </div>

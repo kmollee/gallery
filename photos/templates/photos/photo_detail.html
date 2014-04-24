@@ -28,13 +28,13 @@
 {% block actions %}
     <div class="actions photo-actions">
         {% if perms.photos.change_photo %}
-            <a href="{% url 'photo_rotate' photo.pk %}" class="rotate">{% trans 'Rotate' %}</a>
-            <a href="{% url 'photo_rename' photo.pk %}" class="rename">{% trans 'Rename' %}</a>
-            <a href="{% url 'photo_move' photo.pk %}" class="move">{% trans 'Move' %}</a>
-            <a href="{% url 'photo_tag' photo.pk %}" class="tag">{% trans 'Tag' %}</a>
+            <a href="{% url 'photo_rotate' photo.pk %}" data-modal="rotate">{% trans 'Rotate' %}</a>
+            <a href="{% url 'photo_rename' photo.pk %}" data-modal="form">{% trans 'Rename' %}</a>
+            <a href="{% url 'photo_move' photo.pk %}" data-modal="form">{% trans 'Move' %}</a>
+            <a href="{% url 'photo_tag' photo.pk %}" data-modal="form">{% trans 'Tag' %}</a>
         {% endif %}
         {% if perms.photos.delete_photo %}
-            <a href="{% url 'photo_delete' photo.pk %}" class="delete">{% trans 'Delete' %}</a>
+            <a href="{% url 'photo_delete' photo.pk %}" data-modal="form">{% trans 'Delete' %}</a>
         {% endif %}
         <a href="{% url 'photo_download' photo.pk %}">{% trans 'Download' %}</a>
     </div>

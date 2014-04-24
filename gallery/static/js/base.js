@@ -21,16 +21,16 @@ $(function() {
     });
 
     // Enabling the modal window shows the wrapper and enables the cancel button.
-    function enableModalWindow(selector) {
+    function enableModalWindow() {
         $("#modal-wrapper").show();
         $("#modal .cancel").click(function(event){
-            disableModalWindow(selector);
+            disableModalWindow();
         });
         $("#modal select").chosen();
     }
 
     // Disabling the modal window clears the html and hides the  wrapper.
-    function disableModalWindow(selector) {
+    function disableModalWindow() {
         $("#modal").html("");
         $("#modal-wrapper").hide();
     }
@@ -45,7 +45,7 @@ $(function() {
     // and will catch the form resposne and re-populate the div with the
     // results of the form if status is "ERROR". If status is "OK" then the
     // page will be refreshed with the URL that was sent from the server.
-    function initializeModalForm(selector) {
+    function initializeModalForm() {
         // Change the form in the modal window to an AJAX form.
         $("#modal form").submit(function(event){
             event.preventDefault();
@@ -75,7 +75,7 @@ $(function() {
     }
 
     // Send an AJAX request when Rotate is clicked.
-    $("#toolbar .photo-actions .rotate").click(function(event){
+    $("[data-modal='rotate']").click(function(event){
         event.preventDefault();
         $.ajax({
             method: "POST",
@@ -93,30 +93,19 @@ $(function() {
         });
     });
 
-    // Open the AJAX form when any of the following links are clicked.
-    selector_arry = [
-        "#toolbar .photo-actions .move",
-        "#toolbar .photo-actions .tag",
-        "#toolbar .album-actions .merge",
-        "#toolbar .actions .rename",
-        "#toolbar .actions .delete",
-        "#toolbar .actions .create"
-    ]
-
-    $.each(selector_arry, function(index, value){
-        $(value).click(function(event){
-            event.preventDefault();
-            $.getJSON($(this).attr("href"), function(data) {
-                if (data.html) {
-                    $("#modal").html(data.html)
-                    enableModalWindow(value);
-                    initializeModalForm(value);
-                    $("#modal input[type='text']:enabled:first").focus();
-                }
-                else {
-                    errorProcessing(data);
-                }
-            });
+    // Display the form when any modal form links are clicked.
+    $("[data-modal='form']").click(function(event){
+        event.preventDefault();
+        $.getJSON($(this).attr("href"), function(data) {
+            if (data.html) {
+                $("#modal").html(data.html)
+                enableModalWindow();
+                initializeModalForm();
+                $("#modal input[type='text']:enabled:first").focus();
+            }
+            else {
+                errorProcessing(data);
+            }
         });
     });
 

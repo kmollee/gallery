@@ -9,7 +9,7 @@
 {% block actions %}
     <span class="actions location-actions">
         {% if perms.photos.add_location %}
-            <a href="{% url 'location_create' %}" class="create">{% trans 'Create Location' %}</a>
+            <a href="{% url 'location_create' %}" data-modal="form">{% trans 'Create Location' %}</a>
         {% endif %}
     </span>
 {% endblock %}

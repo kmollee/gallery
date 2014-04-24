@@ -9,10 +9,10 @@
 {% block actions %}
     <div class="actions location-actions">
         {% if perms.photos.change_location %}
-            <a href="{% url 'location_rename' location.pk %}" class="rename">{% trans 'Rename' %}</a>
+            <a href="{% url 'location_rename' location.pk %}" data-modal="form">{% trans 'Rename' %}</a>
         {% endif %}
         {% if perms.photos.delete_location %}
-            <a href="{% url 'location_delete' location.pk %}" class="delete">{% trans 'Delete' %}</a>
+            <a href="{% url 'location_delete' location.pk %}" data-modal="form">{% trans 'Delete' %}</a>
         {% endif %}
     </div>
 {% endblock %}

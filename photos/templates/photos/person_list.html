@@ -9,7 +9,7 @@
 {% block actions %}
     <span class="actions person-actions">
         {% if perms.photos.add_person %}
-            <a href="{% url 'person_create' %}" class="create">{% trans 'Create Person' %}</a>
+            <a href="{% url 'person_create' %}" data-modal="form">{% trans 'Create Person' %}</a>
         {% endif %}
     </span>
 {% endblock %}

@@ -9,7 +9,7 @@
 {% block actions %}
     <span class="actions album-actions">
         {% if perms.photos.add_album %}
-            <a href="{% url 'album_create' %}" class="create">{% trans 'Create Album' %}</a>
+            <a href="{% url 'album_create' %}" data-modal="form">{% trans 'Create Album' %}</a>
         {% endif %}
     </span>
 {% endblock %}
